@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时音频可视化录音机</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>实时音频可视化录音机</h1>
+        
+        <div class="status" id="status">准备就绪</div>
+        
+        <div class="canvas-container">
+            <canvas id="visualizer" width="800" height="300"></canvas>
+        </div>
+        
+        <div class="controls">
+            <button id="btn-record" class="btn btn-record">开始录音</button>
+            <button id="btn-pause" class="btn btn-pause" disabled>暂停录音</button>
+            <button id="btn-stop" class="btn btn-stop" disabled>停止录音</button>
+        </div>
+        
+        <div class="recordings-container" id="recordings-container">
+            <div class="recordings-header">录音列表</div>
+            <div id="recordings-list"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
