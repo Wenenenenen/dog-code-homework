@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>展会摊位巡检记录</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部统计栏 -->
+        <header class="header">
+            <h1 class="title">展会摊位巡检记录</h1>
+            <div class="statistics">
+                <div class="stat-item">
+                    <span class="stat-label">总摊位数</span>
+                    <span class="stat-value" id="total-booths">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">已巡检</span>
+                    <span class="stat-value" id="inspected-booths">0</span>
+                </div>
+                <div class="stat-item stat-item-has-issue">
+                    <span class="stat-label">有问题</span>
+                    <span class="stat-value" id="has-issue-booths">0</span>
+                </div>
+                <div class="stat-item stat-item-normal">
+                    <span class="stat-label">正常</span>
+                    <span class="stat-value" id="normal-booths">0</span>
+                </div>
+            </div>
+        </header>
+        
+        <!-- 主体内容区 -->
+        <main class="main-content">
+            <!-- 左侧摊位列表 -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h2>摊位列表</h2>
+                </div>
+                <div class="booth-list" id="booth-list">
+                    <!-- 摊位列表将通过JavaScript动态生成 -->
+                </div>
+            </aside>
+            
+            <!-- 右侧巡检表单 -->
+            <section class="content-area">
+                <div class="inspection-form-container" id="inspection-form-container">
+                    <div class="empty-state">请从左侧列表选择一个摊位</div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
