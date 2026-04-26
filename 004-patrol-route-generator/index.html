@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>园区巡逻路线生成器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>园区巡逻路线生成器</h1>
+            <p class="subtitle">安保主管专用：智能规划夜间巡逻路线</p>
+        </header>
+
+        <div class="main-content">
+            <div class="map-section">
+                <h2>园区地图</h2>
+                <div class="map-container">
+                    <svg id="parkMap" viewBox="0 0 600 400" class="park-svg">
+                        <!-- 围墙 -->
+                        <rect x="20" y="20" width="560" height="360" fill="none" stroke="#8B4513" stroke-width="4" stroke-dasharray="10,5"/>
+                        
+                        <!-- 巡逻点将通过JS动态生成 -->
+                    </svg>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="legend-color start"></span>
+                        <span>起点</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color end"></span>
+                        <span>终点</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color must-pass"></span>
+                        <span>必须经过</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color high-risk"></span>
+                        <span>高风险</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color normal"></span>
+                        <span>普通</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <div class="control-panel">
+                    <h2>巡逻点设置</h2>
+                    <div class="patrol-points-list" id="patrolPointsList">
+                        <!-- 巡逻点列表将通过JS动态生成 -->
+                    </div>
+                </div>
+
+                <div class="control-panel">
+                    <h2>路线操作</h2>
+                    <div class="route-controls">
+                        <button id="generateRoute" class="btn-primary">生成推荐路线</button>
+                        <button id="clearRoute" class="btn-secondary">清空路线</button>
+                        <button id="resetAll" class="btn-warning">重置所有选择</button>
+                    </div>
+                </div>
+
+                <div class="control-panel">
+                    <h2>路线信息</h2>
+                    <div class="route-info" id="routeInfo">
+                        <div class="info-item">
+                            <span class="info-label">总距离：</span>
+                            <span class="info-value" id="totalDistance">-</span>
+                            <span class="info-unit">米</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">预计时长：</span>
+                            <span class="info-value" id="estimatedTime">-</span>
+                            <span class="info-unit">分钟</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">风险点数量：</span>
+                            <span class="info-value" id="riskPointCount">-</span>
+                            <span class="info-unit">个</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-panel">
+                    <h2>路线顺序（可拖拽调整）</h2>
+                    <div class="route-order-list" id="routeOrderList">
+                        <p class="empty-hint">请先生成路线</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

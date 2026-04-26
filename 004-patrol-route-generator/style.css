@@ -1,0 +1,482 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 30px;
+}
+
+.map-section {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.map-section h2 {
+    margin-bottom: 20px;
+    color: #1e3c72;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.map-container {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+}
+
+.park-svg {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.patrol-point {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.patrol-point:hover {
+    stroke-width: 3;
+    filter: brightness(1.1);
+}
+
+.patrol-point-label {
+    pointer-events: none;
+    font-size: 12px;
+    font-weight: 600;
+    fill: #333;
+}
+
+.route-line {
+    stroke: #ff6b6b;
+    stroke-width: 3;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 10, 5;
+    animation: dash 1s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -15;
+    }
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #666;
+}
+
+.legend-color.start {
+    background-color: #4CAF50;
+}
+
+.legend-color.end {
+    background-color: #FF5722;
+}
+
+.legend-color.must-pass {
+    background-color: #9C27B0;
+}
+
+.legend-color.high-risk {
+    background-color: #F44336;
+}
+
+.legend-color.normal {
+    background-color: #2196F3;
+}
+
+.controls-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.control-panel {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.control-panel h2 {
+    margin-bottom: 15px;
+    color: #1e3c72;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.patrol-points-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.patrol-point-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #2196F3;
+    transition: all 0.3s ease;
+}
+
+.patrol-point-item:hover {
+    background-color: #e9ecef;
+}
+
+.patrol-point-item.high-risk {
+    border-left-color: #F44336;
+    background-color: #fff5f5;
+}
+
+.patrol-point-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.patrol-point-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.patrol-point-type {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.risk-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.risk-badge.high {
+    background-color: #F44336;
+    color: white;
+}
+
+.risk-badge.normal {
+    background-color: #2196F3;
+    color: white;
+}
+
+.patrol-point-selectors {
+    display: flex;
+    gap: 8px;
+}
+
+.selector-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selector-btn.start {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.selector-btn.start:hover, .selector-btn.start.active {
+    background-color: #388E3C;
+}
+
+.selector-btn.end {
+    background-color: #FF5722;
+    color: white;
+}
+
+.selector-btn.end:hover, .selector-btn.end.active {
+    background-color: #E64A19;
+}
+
+.selector-btn.must-pass {
+    background-color: #9C27B0;
+    color: white;
+}
+
+.selector-btn.must-pass:hover, .selector-btn.must-pass.active {
+    background-color: #7B1FA2;
+}
+
+.route-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-primary, .btn-secondary, .btn-warning {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.route-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #333;
+    min-width: 100px;
+}
+
+.info-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e3c72;
+}
+
+.info-unit {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.route-order-list {
+    min-height: 150px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.empty-hint {
+    text-align: center;
+    color: #999;
+    padding: 40px 20px;
+    font-style: italic;
+}
+
+.route-order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #4CAF50;
+    cursor: grab;
+    transition: all 0.3s ease;
+}
+
+.route-order-item:hover {
+    background-color: #e9ecef;
+}
+
+.route-order-item.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.route-order-item.drag-over {
+    border-top: 2px solid #1e3c72;
+}
+
+.route-order-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.route-order-number {
+    width: 24px;
+    height: 24px;
+    background-color: #1e3c72;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.route-order-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.route-order-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.remove-btn {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+    background-color: #c82333;
+}
+
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .controls-section {
+        order: 2;
+    }
+    
+    .map-section {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .legend {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .patrol-point-item {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .patrol-point-selectors {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
