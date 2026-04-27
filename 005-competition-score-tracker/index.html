@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赛事积分追踪系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>赛事积分追踪系统</h1>
+            <p class="subtitle">多人多轮比赛积分管理与实时排名</p>
+        </header>
+
+        <div class="main-content">
+            <!-- 左侧控制面板 -->
+            <div class="controls-section">
+                <!-- 参赛者管理 -->
+                <div class="control-panel">
+                    <h2>参赛者管理</h2>
+                    <div class="add-participant-form">
+                        <input type="text" id="newParticipantName" placeholder="输入参赛者姓名" maxlength="50">
+                        <button id="addParticipantBtn" class="btn-primary">添加参赛者</button>
+                    </div>
+                    <div class="participants-list" id="participantsList">
+                        <p class="empty-hint">暂未添加参赛者</p>
+                    </div>
+                </div>
+
+                <!-- 比赛轮次管理 -->
+                <div class="control-panel">
+                    <h2>比赛轮次管理</h2>
+                    <div class="add-round-form">
+                        <div class="form-row">
+                            <input type="text" id="newRoundName" placeholder="轮次名称（如：预赛、决赛）" maxlength="50">
+                            <input type="number" id="newRoundWeight" placeholder="权重" min="0.1" step="0.1" value="1.0" class="weight-input">
+                        </div>
+                        <button id="addRoundBtn" class="btn-primary">添加轮次</button>
+                    </div>
+                    <div class="rounds-list" id="roundsList">
+                        <p class="empty-hint">暂未添加比赛轮次</p>
+                    </div>
+                </div>
+
+                <!-- 成绩录入 -->
+                <div class="control-panel">
+                    <h2>成绩录入</h2>
+                    <div class="score-input-section" id="scoreInputSection">
+                        <div class="form-row">
+                            <select id="selectedParticipant">
+                                <option value="">选择参赛者</option>
+                            </select>
+                            <select id="selectedRound">
+                                <option value="">选择轮次</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <input type="number" id="scoreValue" placeholder="原始成绩" min="0" step="0.01" class="score-input">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="isForfeit">
+                                标记为弃权
+                            </label>
+                        </div>
+                        <button id="submitScoreBtn" class="btn-primary">录入成绩</button>
+                    </div>
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="control-panel">
+                    <h2>操作</h2>
+                    <div class="action-buttons">
+                        <button id="exportRankingBtn" class="btn-primary">导出排名汇总</button>
+                        <button id="resetAllBtn" class="btn-warning">重置所有数据</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧排名显示区 -->
+            <div class="ranking-section">
+                <div class="ranking-header">
+                    <h2>实时排名</h2>
+                    <div class="ranking-info">
+                        <span class="info-item">参赛者: <strong id="totalParticipants">0</strong> 人</span>
+                        <span class="info-item">比赛轮次: <strong id="totalRounds">0</strong> 轮</span>
+                        <span class="info-item">最后更新: <strong id="lastUpdate">-</strong></span>
+                    </div>
+                </div>
+                
+                <div class="ranking-table-container" id="rankingTableContainer">
+                    <p class="empty-hint">请添加参赛者和比赛轮次后录入成绩</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 导出模态框 -->
+        <div id="exportModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>排名汇总表格</h3>
+                    <button id="closeModalBtn" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="export-table-container" id="exportTableContainer">
+                        <!-- 导出表格将通过JS生成 -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="copyTableBtn" class="btn-secondary">复制表格</button>
+                    <button id="downloadCsvBtn" class="btn-primary">下载CSV</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 编辑成绩模态框 -->
+        <div id="editModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>编辑成绩</h3>
+                    <button id="closeEditModalBtn" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="edit-form">
+                        <div class="form-group">
+                            <label>参赛者: <strong id="editParticipantName"></strong></label>
+                        </div>
+                        <div class="form-group">
+                            <label>轮次: <strong id="editRoundName"></strong></label>
+                        </div>
+                        <div class="form-group">
+                            <label for="editScoreValue">原始成绩:</label>
+                            <input type="number" id="editScoreValue" placeholder="原始成绩" min="0" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="editIsForfeit">
+                                标记为弃权
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelEditBtn" class="btn-secondary">取消</button>
+                    <button id="saveEditBtn" class="btn-primary">保存修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
