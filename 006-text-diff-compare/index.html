@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本对比工具</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>文本对比工具</h1>
+            <p class="subtitle">直观比较两段文本之间的差异，类似 Beyond Compare</p>
+        </header>
+
+        <div class="main-content">
+            <!-- 输入区域 -->
+            <div class="input-section">
+                <div class="input-panel">
+                    <div class="panel-header">
+                        <h2>文本 A (左侧)</h2>
+                        <span class="file-badge">原始文本</span>
+                    </div>
+                    <textarea id="textLeft" placeholder="请在此输入或粘贴第一段文本..." spellcheck="false"></textarea>
+                </div>
+                <div class="input-panel">
+                    <div class="panel-header">
+                        <h2>文本 B (右侧)</h2>
+                        <span class="file-badge">修改后文本</span>
+                    </div>
+                    <textarea id="textRight" placeholder="请在此输入或粘贴第二段文本..." spellcheck="false"></textarea>
+                </div>
+            </div>
+
+            <!-- 操作按钮区域 -->
+            <div class="action-bar">
+                <div class="action-left">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="ignoreWhitespace">
+                        <span class="checkmark"></span>
+                        <span>忽略空白字符</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="showDiffOnly">
+                        <span class="checkmark"></span>
+                        <span>仅显示差异</span>
+                    </label>
+                </div>
+                <div class="action-right">
+                    <button id="compareBtn" class="btn-primary">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 16h6M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        开始对比
+                    </button>
+                    <button id="clearBtn" class="btn-secondary">清空内容</button>
+                </div>
+            </div>
+
+            <!-- 统计信息区域 -->
+            <div id="statsSection" class="stats-section hidden">
+                <div class="stats-header">
+                    <h3>对比统计</h3>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card added">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="addedCount">0</span>
+                            <span class="stat-label">新增行</span>
+                        </div>
+                    </div>
+                    <div class="stat-card removed">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="removedCount">0</span>
+                            <span class="stat-label">删除行</span>
+                        </div>
+                    </div>
+                    <div class="stat-card modified">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="modifiedCount">0</span>
+                            <span class="stat-label">修改行</span>
+                        </div>
+                    </div>
+                    <div class="stat-card similarity">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="similarityPercent">0.0%</span>
+                            <span class="stat-label">相似度</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 对比结果区域 -->
+            <div id="resultSection" class="result-section hidden">
+                <div class="result-header">
+                    <div class="result-header-left">
+                        <span class="result-label-left">文本 A (原始)</span>
+                    </div>
+                    <div class="result-header-right">
+                        <span class="result-label-right">文本 B (修改后)</span>
+                    </div>
+                </div>
+                <div class="result-container">
+                    <div id="diffResult" class="diff-result">
+                        <!-- 对比结果将通过 JS 生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
