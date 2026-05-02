@@ -26,4 +26,4 @@ replay_pid*
 .trae/
 .playwright-mcp/
 
-node_modules/
+node_modules
