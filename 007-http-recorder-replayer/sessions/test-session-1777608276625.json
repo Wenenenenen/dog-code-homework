@@ -1,0 +1,29 @@
+{
+  "sessionId": "test-session-1777608276625",
+  "createdAt": "2026-05-01T04:04:36.631Z",
+  "records": [
+    {
+      "id": "1777608276630-y1fqvkgz6",
+      "timestamp": "2026-05-01T04:04:36.631Z",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:9876/api/hello",
+        "host": "localhost:9876",
+        "pathname": "/api/hello",
+        "path": "/api/hello",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": ""
+      },
+      "response": {
+        "statusCode": 200,
+        "statusMessage": "OK",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\"message\":\"Test\"}"
+      }
+    }
+  ]
+}

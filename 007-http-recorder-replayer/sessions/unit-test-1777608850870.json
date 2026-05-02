@@ -1,0 +1,30 @@
+{
+  "sessionId": "unit-test-1777608850870",
+  "createdAt": "2026-05-01T04:14:10.870Z",
+  "records": [
+    {
+      "id": "1777608850870-iqyed1a71",
+      "timestamp": "2026-05-01T04:14:10.870Z",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:9876/api/hello",
+        "host": "localhost:9876",
+        "hostname": "localhost",
+        "pathname": "/api/hello",
+        "path": "/api/hello",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": ""
+      },
+      "response": {
+        "statusCode": 200,
+        "statusMessage": "OK",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\"message\":\"Test\"}"
+      }
+    }
+  ]
+}

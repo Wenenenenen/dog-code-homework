@@ -1,0 +1,110 @@
+{
+  "sessionId": "integration-test-1777608850864",
+  "createdAt": "2026-05-01T04:14:11.266Z",
+  "records": [
+    {
+      "id": "1777608851040-74nyama0r",
+      "timestamp": "2026-05-01T04:14:11.040Z",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:9876/api/hello",
+        "protocol": "http:",
+        "host": "localhost:9876",
+        "hostname": "localhost",
+        "port": "9876",
+        "path": "/api/hello",
+        "pathname": "/api/hello",
+        "query": null,
+        "hash": null,
+        "headers": {
+          "host": "localhost:9876",
+          "connection": "close"
+        },
+        "body": "",
+        "bodyBuffer": ""
+      },
+      "response": {
+        "statusCode": 200,
+        "statusMessage": "OK",
+        "headers": {
+          "content-type": "application/json",
+          "date": "Fri, 01 May 2026 04:14:11 GMT",
+          "connection": "close",
+          "transfer-encoding": "chunked"
+        },
+        "body": "{\"message\":\"Hello World\",\"timestamp\":1777608851037}",
+        "bodyBuffer": "eyJtZXNzYWdlIjoiSGVsbG8gV29ybGQiLCJ0aW1lc3RhbXAiOjE3Nzc2MDg4NTEwMzd9"
+      }
+    },
+    {
+      "id": "1777608851046-ls1ri2mza",
+      "timestamp": "2026-05-01T04:14:11.046Z",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:9876/api/submit",
+        "protocol": "http:",
+        "host": "localhost:9876",
+        "hostname": "localhost",
+        "port": "9876",
+        "path": "/api/submit",
+        "pathname": "/api/submit",
+        "query": null,
+        "hash": null,
+        "headers": {
+          "host": "localhost:9876",
+          "content-type": "application/json",
+          "content-length": "47",
+          "connection": "close"
+        },
+        "body": "{\"name\":\"Test User\",\"email\":\"test@example.com\"}",
+        "bodyBuffer": "eyJuYW1lIjoiVGVzdCBVc2VyIiwiZW1haWwiOiJ0ZXN0QGV4YW1wbGUuY29tIn0="
+      },
+      "response": {
+        "statusCode": 201,
+        "statusMessage": "Created",
+        "headers": {
+          "content-type": "application/json",
+          "date": "Fri, 01 May 2026 04:14:11 GMT",
+          "connection": "close",
+          "transfer-encoding": "chunked"
+        },
+        "body": "{\"success\":true,\"received\":{\"name\":\"Test User\",\"email\":\"test@example.com\"},\"timestamp\":1777608851046}",
+        "bodyBuffer": "eyJzdWNjZXNzIjp0cnVlLCJyZWNlaXZlZCI6eyJuYW1lIjoiVGVzdCBVc2VyIiwiZW1haWwiOiJ0ZXN0QGV4YW1wbGUuY29tIn0sInRpbWVzdGFtcCI6MTc3NzYwODg1MTA0Nn0="
+      }
+    },
+    {
+      "id": "1777608851052-ymb51f94g",
+      "timestamp": "2026-05-01T04:14:11.052Z",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:9876/api/not-found",
+        "protocol": "http:",
+        "host": "localhost:9876",
+        "hostname": "localhost",
+        "port": "9876",
+        "path": "/api/not-found",
+        "pathname": "/api/not-found",
+        "query": null,
+        "hash": null,
+        "headers": {
+          "host": "localhost:9876",
+          "connection": "close"
+        },
+        "body": "",
+        "bodyBuffer": ""
+      },
+      "response": {
+        "statusCode": 404,
+        "statusMessage": "Not Found",
+        "headers": {
+          "content-type": "application/json",
+          "date": "Fri, 01 May 2026 04:14:11 GMT",
+          "connection": "close",
+          "transfer-encoding": "chunked"
+        },
+        "body": "{\"error\":\"Not Found\"}",
+        "bodyBuffer": "eyJlcnJvciI6Ik5vdCBGb3VuZCJ9"
+      }
+    }
+  ]
+}

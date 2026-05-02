@@ -1,0 +1,29 @@
+{
+  "name": "007-http-recorder-replayer",
+  "version": "1.0.0",
+  "description": "本地 HTTP 录制与回放服务",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node tests/test.js"
+  },
+  "keywords": [
+    "http",
+    "proxy",
+    "recorder",
+    "replayer",
+    "mock"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "http-proxy": "^1.18.1"
+  },
+  "bin": {
+    "http-recorder": "src/index.js"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
